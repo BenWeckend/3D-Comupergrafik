@@ -1,2 +1,2 @@
 # 3D-Comupergrafik
- Übungsaufgaben
+ Übungsaufgaben in Godot
