@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7n0hxqhvnmg3"]
+
+[ext_resource type="Shader" uid="uid://dtj8fn8sxtyqw" path="res://vertex_example.gdshader" id="1_j64gq"]
+[ext_resource type="Shader" uid="uid://dfcio6bifn6ki" path="res://waves.gdshader" id="2_04b38"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04b38"]
+render_priority = 0
+shader = ExtResource("1_j64gq")
+
+[sub_resource type="TorusMesh" id="TorusMesh_dbfko"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbfko"]
+render_priority = 0
+shader = ExtResource("2_04b38")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qqiq4"]
+material = SubResource("ShaderMaterial_dbfko")
+size = Vector2(10, 10)
+subdivide_width = 20
+subdivide_depth = 20
+
+[node name="VertexExample" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84759, 0)
+material_override = SubResource("ShaderMaterial_04b38")
+mesh = SubResource("TorusMesh_dbfko")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.844926, 0.534883, 0, -0.534883, 0.844926, -0.0306577, 1.14653, 1.98777)
+fov = 95.625
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_qqiq4")
