@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://mpbcd3wl5hq2"]
+
+[ext_resource type="PackedScene" uid="uid://xuu5bigf8hur" path="res://assets/lake/SimpleLake.glb" id="1_8b8ew"]
+[ext_resource type="Material" uid="uid://dvnxfukuaiggr" path="res://shader/landscape.material" id="2_c7asl"]
+
+[node name="Landscape" instance=ExtResource("1_8b8ew")]
+
+[node name="Lake" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_c7asl")

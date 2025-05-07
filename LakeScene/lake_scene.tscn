@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b36vsblhtcbcm"]
+
+[ext_resource type="PackedScene" uid="uid://mpbcd3wl5hq2" path="res://landscape.tscn" id="1_5lehu"]
+[ext_resource type="Material" uid="uid://eeswxaxxvxx0" path="res://shader/water_lake.material" id="2_k2krq"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_k2krq"]
+
+[sub_resource type="Sky" id="Sky_p3dsh"]
+sky_material = SubResource("PhysicalSkyMaterial_k2krq")
+
+[sub_resource type="Environment" id="Environment_ddtdy"]
+background_mode = 2
+sky = SubResource("Sky_p3dsh")
+volumetric_fog_density = 0.01
+volumetric_fog_sky_affect = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dpsq6"]
+material = ExtResource("2_k2krq")
+size = Vector2(30, 30)
+subdivide_width = 1000
+subdivide_depth = 1000
+
+[node name="LakeScene" type="Node3D"]
+
+[node name="SimpleLake" parent="." instance=ExtResource("1_5lehu")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ddtdy")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.979861, 0.196375, 0.0361834, -0.190977, 0.868715, 0.457014, 0.0583131, -0.45472, 0.888723, 0, 6.15558, 0)
+light_color = Color(0.877072, 0.686535, 0.622665, 1)
+light_energy = 0.708
+shadow_enabled = true
+shadow_reverse_cull_face = true
+directional_shadow_blend_splits = true
+
+[node name="WaterSurface" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.22963)
+mesh = SubResource("PlaneMesh_dpsq6")
+skeleton = NodePath("../SimpleLake")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.969872, -0.0833213, 0.228923, 0, 0.939693, 0.34202, -0.243615, 0.331716, -0.911382, 11, 2, -13)
+
+[editable path="SimpleLake"]
